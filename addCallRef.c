@@ -1,2 +1,3 @@
 #include<iostream.h>
-void add()
+void add(int *a,int *b){
+  
