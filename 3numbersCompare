@@ -1,0 +1,35 @@
+#include <stdio.h>
+int  input(int*a,int*b,int*c)
+{
+     printf("enter a");
+     scanf("%d",a);
+     printf("enter b");
+     scanf("%d",b);
+     printf("enter c");
+     scanf("%d",c);
+}
+int compare(int a,int b,int c)
+{
+     int d;
+     if(a<b&a<c){
+     d=a;
+     }
+     if(b<a&b<c){
+     d=b;
+     }
+     if(c<a&c<b){
+     d=c;
+     }
+     return d;
+}
+     void output(int a,int b,int c,int d)
+{
+     printf("%d is lesser among %d,%d,%d",a,b,c,d);
+}
+int main()
+{
+     int l,m,n,o;
+     input(&l,&m,&n);
+     o=compare(l,m,n);
+     output(l,m,n,o);
+}
