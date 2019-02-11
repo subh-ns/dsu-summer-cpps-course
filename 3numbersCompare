@@ -33,3 +33,65 @@ int main()
      o=compare(l,m,n);
      output(l,m,n,o);
 }
+
+2.using nested if
+
+
+#include <stdio.h>
+int  input(int*a,int*b,int*c)
+{
+     printf("enter a,b,c");
+     scanf("%d,%d,%d",a,b,c);
+}
+int min(int a,int b,int c)
+{
+     if(a<b){
+     if(a<c)
+     return a;
+     else return c;}
+
+     else if(b<a){
+     if(b<c)
+     return b;
+     else return c;}
+}
+void output(int a,int b,int c,int d)
+{
+     printf("%d is minimum among %d,%d,%d",d,a,b,c);
+}
+int main()
+{
+     int l,m,n,o;
+     input(&l,&m,&n);
+     o=min(l,m,n);
+     output(l,m,n,o);
+}
+
+3)using min variable
+
+#include <stdio.h>
+int input(int*a,int*b,int*c)
+{
+        printf("enter a b c");
+        scanf("%d,%d,%d",a,b,c);
+}
+int min(int a,int b,int c)
+{
+        int min=a;
+        if (b<min){
+        min=b;}
+        if (c<min){
+        min=c;}
+        return min;
+}
+void output(int a,int b,int c,int min)
+{
+        printf("%d is minimum of %d,%d,%d",min,a,b,c);
+}
+int main()
+{
+        int x,y,z,w;
+        input(&x,&y,&z);
+        w=min(x,y,z);
+        output(x,y,z,w);
+}
