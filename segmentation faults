@@ -1,0 +1,24 @@
+What are segmentation faults (segfaults), and how can I identify what's causing them?
+A segmentation fault (aka segfault) is a common condition that causes programs to crash; 
+they are often associated with a file named core.
+Segfaults are caused by a program trying to read or write an illegal memory location.
+Program memory is divided into different segments: a text segment for program instructions,
+a data segment for variables and arrays defined at compile time, 
+a stack segment for temporary (or automatic) variables defined in subroutines and functions,
+and a heap segment for variables allocated during runtime by functions, such as malloc (in C) and allocate (in Fortran).
+For more, see What are program segments, and which segments are different types of variables stored in? 
+A segfault occurs when a reference to a variable falls outside the segment where that variable resides, 
+or when a write is attempted to a location that is in a read-only segment.
+In practice, segfaults are almost always due to trying to read or write a non-existent array element,
+not properly defining a pointer before using it,
+or (in C programs) accidentally using a variable's value as an address (see the scanf example below):
+
+    For example, calling memset() as shown below would cause a program to segfault:
+
+     memset((char *)0x0, 1, 100);
+
+    The following three cases illustrate the most common types of array-related segfaults:
+    Case A
+
+     /* "Array out of bounds" error valid indices for array foo are 0, 1, ... 999 */ int foo[1000];
+for (int i = 0; i <= 1000 ; i++) foo[i] = i;
