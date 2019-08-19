@@ -203,3 +203,210 @@ void matrixmul(int r1,int c1,int r2, int c2)
 		printf("Matrix multiplication not possible\n");
 	}
 }
+edit:
+#include<stdio.h>
+void matrixadd(int r1,int c1, int r2, int c2, int a[r1][c1], int b[r2][c2]);
+//void matrixsub(int r1,int c1,int r2,int c2, int a[r1][c1], int b[r2][c2]);
+//void matrixmul(int r1,int c1,int r2,int c2 int a[r1][c1], int b[r2][c2]);
+void main()
+{
+	int r1,c1,ch,r2,c2,i,j;
+	
+	printf("Enter the number of rows and columns of 1st matrix\n");
+	scanf("%d%d",&r1,&c1);
+	int a[r1][c1];
+	printf("Enter the number of rows and columns of 2nd matrix\n");
+	scanf("%d%d",&r2,&c2);
+	int b[r2][c2];
+	printf("Enter the elements of the 1st matrix\n");
+	for(i=0;i<r1;i++)
+	{
+		for(j=0;j<c1;j++)
+		{
+			scanf("%d",&a[i][j]);
+		}
+	}
+	printf("Enter the elements of the 2nd matrix\n");
+	for(i=0;i<r2;i++)
+	{
+		for(j=0;j<c2;j++)
+		{
+			scanf("%d",&b[i][j]);
+		}
+	}
+	printf("Enter '1' for matrix addition.\n");
+	printf("Enter '2' for matrix subtraction. \n");
+	printf("Enter '3' for matrix multiplication.\n");
+	printf("Enter your choice\n");
+	scanf("%d",&ch);	
+	switch(ch)
+	{
+		case 1:
+
+				printf("Matrix Addition:\n");
+				matrixadd(r1,c1,r2,c2,a,b);
+				puts("");
+				break;
+		/*case 2:
+				printf("Matrix Subtraction:\n");
+				matrixsub(r1,c1,r2,c2);
+				puts("");
+				break;
+		case 3:
+				printf("Matrix Multiplication\n");
+				matrixmul(r1,c1,r2,c2);
+				puts("");
+				break;*/
+		default:
+			printf("Invalid Input\n");
+	}
+}
+void matrixadd(int r1,int c1,int r2,int c2,int a[r1][c1], int b[r2][c2])
+{
+	int i,j;
+	if(r1==r2 && c1==c2)
+	{
+		int r3,c3;
+		r3=r1;c3=c1;
+		int c[r1][c1];
+		printf("1st Matrix: \n");
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c1;j++)
+			{
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+		printf("2nd Matrix: \n");
+		for(i=0;i<r2;i++)
+		{
+			for(j=0;j<c2;j++)
+			{
+				printf("%d ",b[i][j]);
+			}printf("\n");
+		}
+		printf("\nResultant Matrix: \n");
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c1;j++)
+			{
+				c[i][j]=a[i][j]+b[i][j];
+			}
+		}
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c1;j++)
+			{
+				printf("%d ",c[i][j]);
+			}
+			printf("\n");
+		}
+	}
+	else
+	{
+		printf("The arrays should have same order for addition\n");
+	}
+}
+/*void matrixsub(int r1,int c1,int r2,int c2)
+{
+	int i,j,a[r1][c1],b[r2][c2];
+	if(r1==r2&&c1==c2)
+	{
+		int r3,c3;
+		r3=r1;c3=c1;
+		int c[r3][c3];
+		printf("Matrix Subtraction: \n");
+		printf("1st Matrix\n");
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c1;j++)
+			{
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("2nd Matrix\n");
+		for(i=0;i<r2;i++)
+		{
+			for(j=0;j<c2;j++)
+			{
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("Resultant Matrix\n");
+		for(i=0;i<r3;i++)
+		{
+			for(j=0;j<c3;j++)
+			{
+				c[i][j]=a[i][j]+b[i][j];
+			}
+		}
+		for(i=0;i<r3;i++)
+		{
+			for(j=0;j<c3;j++)
+			{
+				printf("%d ",c[i][j]);
+			}
+			printf("\n");
+		}
+	}
+	else
+	{
+		printf("The Matrices should be of same order\n");
+	}
+}
+void matrixmul(int r1,int c1,int r2, int c2)
+{
+	int i,j,k,a[r1][c1],b[r2][c2];
+	if(c1==r2)
+	{
+		int r3,c3;
+		r3=r1;c3=c2;
+		int c[r3][c3];
+		printf("Martix Multiplication\n");
+		printf("1st Matrix\n");
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c1;j++)
+			{
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("2nd Matrix\n");
+		for(i=0;i<r2;i++)
+		{
+			for(j=0;j<c2;j++)
+			{
+				printf("%d ",b[i][j]);
+			}
+			printf("\n");
+		}
+		printf("Resultant Matrix: \n");
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c2;j++)
+			{
+				for(k=0;k<c1;k++)
+				{
+					c[i][j]=c[i][j]+(a[i][k]*b[k][j]);
+				}
+			}
+		}
+		for(i=0;i<r1;i++)
+		{
+			for(j=0;j<c2;j++)
+			{
+				printf("%d",c[r3][c3]);
+			}
+		}
+	}
+	else
+	{
+		printf("Matrix multiplication not possible\n");
+	}
+}*/
+
