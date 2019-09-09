@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define size 150
+#include<ctype.h>
+int top=-1;
+char stack[size];
+void infix_to_postfix(int[],int[]);
+void push(int);
+char pop();
+int is_operator(char);
+void main()
+{
+	char infix[size],postfix[size];
+	printf("Enter infix expression\n");
+	gets(infix);
+	infix_to_postfix(infix,postfix);
+	printf("Postfix expression: ");
+	puts(postfix);
+}
+void infix_to_postfix(char infix[],char postfix[])
+{
+	int i=0,j=0;
+	char x,item;
+	push('(');
+	strcat(infix,')');
+	item=infix[i];
+	while(item!='\0')
+	{
+		if(item=='(')
+			push(item);
+		else if(isdigit(item)||isalpha(item))
+		{
+			postfix_exp[j]=item;
+			j++;
+		}
+		else if(is_operator(item)==1)
+		{
+			x=pop();
+			while(is_operator(x)==1&&precedance(x)>=precedance(item))
+			{
+				postfix_exp[j]=x;
+				j++;
+				x=pop();
+			}
+			push(x);
+			push(item);
+		}
+		else if(item==')')
+		{
+			x=pop();
+			while(x!='(')
+			{
+				postfix_exp[j]=x;
+				j++;
+				x=pop();
+			}
+		}
+		else
+		{
+			printf("Invalid infix expression\n");
+			exit(0);
+		}
+		i++;
+		item=infix[i];
+	}
+	postfix[j]='\0';
+}
+void push(char item)
+{
+	if(top>=size-1)
+	{
+		printf("Stack overflow\n");
+	}
+	else
+	{
+		top++;
+		stack[top]=item;
+	}
+}
+char pop()
+{
+	char item;
+	if(top<0)
+	{
+		printf("Stack underflow, Invalid infix expression\n");
+		getchar();
+	}
+	else
+	{
+		item=stack[top];
+		top--;
+		return(item);
+	}
+}
+int is_operator(char symbol)
+{
+	if(symbol=='^'||symbol=='*'||symbol=='+'||symbol=='-'||symbol=='/')
+		return 1;
+	else
+		return 0;
+}
+int precedance(char symbol)
+{
+	if(symbol=='^')
+		return 3;
+	else if(symbol=='/'||symbol=='*')
+		return 2;
+	else if(symbol=='+'||symbol=='-')
+		return 1;
+	else
+		return 0;
+}
