@@ -1,0 +1,44 @@
+#include<stdio.h>
+void main()
+{
+	int q,m,div,res,i,j,k;
+	long int n;
+	scanf("%d",&q);//no. of queries
+	if(q>0 && q<=1000)
+	{
+		res=0;
+		for(i=1;1<=q;i++)
+		{
+			scanf("%lu",&n);
+			scanf("%d",&m);
+		
+
+			for(j=1;j<=q;i++)
+			{
+				if(n<0||m==0)
+					printf("Invalid input\n");
+				else
+				{
+					for(k=1;j<=n;j++)
+					{
+						if(k%m==0)
+						{
+							res+=(j%10);
+						}
+						else
+						{
+							continue;
+						}								
+					}
+				}
+			}
+			printf("%d\n",res);
+		}
+	}
+	else
+	{
+		printf("invalid\n");
+	}
+}
+						
+					
