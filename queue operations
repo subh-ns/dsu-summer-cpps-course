@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 150
+int front=-1,rear=0;
+int a[size];
+int is_full();
+int is_empty();
+void enqueue(int item);
+int dequeue();
+void display();
+void main()
+{
+	int item,ch,x;
+	do
+	{
+		printf("Simple queue operations\n");
+		printf("Enter 1. for enqueue\n Enter 2. for dequeue\n Enter 3. for display\n Enter 4. to exit\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:
+				if(is_full()==1)
+					printf("The queue is full\n");
+				else
+				{
+					printf("Enter the element to be added to the queue\n");
+					scanf("%d",&item);
+					enqueue(item);
+				}
+				break;
+			case 2:
+				if(is_empty()==1)
+					printf("The queue is empty\n");
+				else
+				{
+					x=dequeue();
+					printf("The element removed from the queue is %d\n",x);
+				}
+				break;
+			case 3:
+				if(is_empty()==1)
+					printf("The queue is empty\n");
+				else
+					display();
+				break;
+			case 4:
+				exit(0);
+			default:
+				printf("Invalid input. Please try again	\n");
+		}
+	}while(ch!=4);
+}
+void enqueue(int item)
+{
+	a[rear]=item;
+	rear++;
+}
+int dequeue()
+{
+	int item;
+	item=a[front+1];
+	front++;
+	return item;
+}
+int is_full()
+{
+	if(rear==size-1)
+	{
+		return 1;
+	}
+	else
+		return 0;
+}
+int is_empty()
+{
+	if(front==rear-1)// or if front>rear or if rear=-1
+		return 1;
+	else
+		return 0;
+}
+void display()
+{
+	printf("The queue elements are: \n");
+	for(int i=front+1;i<=rear-1;i++)
+	{
+		printf("%d ",a[i]);
+		puts("");
+	}
+}
