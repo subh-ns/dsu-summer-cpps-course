@@ -203,7 +203,7 @@ void deleterecord()
 	fclose(ft);
 	if(flag!=1)
 	{
-		printf("NO CONACT'S RECORD TO DELETE.");
+		printf("NO CONTACT'S RECORD TO DELETE.");
 		remove("temp.txt");
 	}
 		else
