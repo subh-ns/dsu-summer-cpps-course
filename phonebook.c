@@ -1,3 +1,4 @@
+https://www.techonthenet.com/c_language/standard_library_functions/stdio_h/clearerr.php
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
