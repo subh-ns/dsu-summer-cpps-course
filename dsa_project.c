@@ -5,9 +5,9 @@
 //typedef struct to define what's in the phonebook
 typedef struct PhoneBookContacts
 {
-    char Name[20];
-    char Surname[20];
-    char PhoneNumber[20];
+    char Name[100];
+    char Surname[100];
+    char PhoneNumber[100];
 }phone;
 
 //Function prototypes
@@ -18,7 +18,7 @@ void Sort (phone[]);
 int counter = 0; //Global counter variable used to keep track of number of contacts
 int main ()
 {
-	phone phonebook[20]; //Phonebook instance
+	phone phonebook[100]; //Phonebook instance
 	char userChoice; //Variable to use to select switch case choice
 	do
 	{
