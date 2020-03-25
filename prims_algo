@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<time.h>
-int a,b,u,v,n,i,j,ne=1,st,et;
+int a,b,u,v,n,i,j,ne=1;
+double st,et;
 int visited[10]={0},min,mincost=0,cost[10][10];
 void main()
 {
@@ -44,13 +45,15 @@ void main()
 		}
 		if(visited[u]==0||visited[v]==0)
 		{
-			printf("Edge: %d :(%d  %d) cost: %d",ne+1,a,b,min);
+			printf("Edge: %d :(%d  %d) cost: %d\n",ne++,a,b,min);
 			mincost+=min;
 			visited[b]=1;
 		}
 		cost[a][b]=cost[b][a]=9999;
 	}
-	printf("Min cost = %d",mincost);
-	st=clock();
-	printf("st=%d\net=%d\ntt=%d\n",st,et,et-st);
+	printf("Min cost = %d\n",mincost);
+	et=clock();
+	st=(double)(st)/CLOCKS_PER_SEC;
+	et=(double)(et)/CLOCKS_PER_SEC;
+	printf("st=%lf  et=%lf  tt=%lf\n",st,et,et-st);
 }
